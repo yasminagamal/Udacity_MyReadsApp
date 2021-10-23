@@ -103,6 +103,22 @@ body, .app {
   outline: none;
 }
 
+.search-books-bar-button {
+  background-color: rgb(7, 58, 65);
+  display: block;
+  top: 20px;
+  left: 15px;
+  width: 50px;
+  height: 53px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 28px;
+  font-size: 10;
+  border: none;
+  outline: none;
+
+}
+
 .close-search {
   display: block;
   top: 20px;
