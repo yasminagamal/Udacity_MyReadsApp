@@ -30,7 +30,7 @@ class WantToRead extends Component {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                             {this.state.books.filter(book => book.shelf === "wantToRead").map((book) =>
-                                <li key={book.title}>
+                                <li key={book.id}>
                                 <Book title={book.title} authors={book.authors} image={book.imageLinks.thumbnail} shelf={book.shelf} />
                                 <div>
                                     <h4>Change Shelf</h4>
@@ -48,7 +48,7 @@ class WantToRead extends Component {
                 <div className="bookshelf-books">
                     <ol className="books-grid">
                         
-                            {this.state.books.filter(book => book.shelf === "currentlyReading").map((book) => <li key={book.title}>
+                            {this.state.books.filter(book => book.shelf === "currentlyReading").map((book) => <li key={book.id}>
                                 <Book books={this.state.books} title={book.title} authors={book.authors} image={book.imageLinks.thumbnail} shelf={book.shelf} />
                                 <div>
                                     <h4>Change Shelf</h4>
@@ -64,7 +64,7 @@ class WantToRead extends Component {
                 </div><h2 className="bookshelf-title">Read</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                            {this.state.books.filter(book => book.shelf === "read").map((book) => <li key={book.title}>
+                            {this.state.books.filter(book => book.shelf === "read").map((book) => <li key={book.id}>
                                 <Book books={this.state.books} title={book.title} authors={book.authors} image={book.imageLinks.thumbnail} shelf={book.shelf} />
                                 <div>
                                     <h4>Change Shelf</h4>
