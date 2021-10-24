@@ -2,6 +2,12 @@ html, body, .root {
   height: 100%;
 }
 
+h1{
+  color:rgb(7, 58, 65) ;
+  font-style: oblique;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 body {
   line-height: 1.5;
 }
