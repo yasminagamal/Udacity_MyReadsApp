@@ -27,12 +27,13 @@ class BookShelf extends Component {
         const input = event.target.value;
         this.setState({ userinput: input })
 
-        input !== ''?
-        BooksAPI.search(input).then((books) => {
-            this.setState(() => ({books: books}))
-        })
-        : this.setState(() => ({books: []}))
-
+        input !== '' ?
+            BooksAPI.search(input).then((books) => {
+                books.hasOwnProperty('error')
+                    ? this.setState(() => ({ books: [] }))
+                    : this.setState(() => ({ books: books }))
+            })
+            : this.setState(() => ({ books: [] }))
     }
 
     componentDidMount() {
@@ -67,19 +68,24 @@ class BookShelf extends Component {
 
                 {'before book loop', console.log(this.state.books)}
                 <div className="search-books-results">
-                    {this.state.books === undefined
+                    {this.state.books.length === 0 && this.state.userinput !== ''
                         ? (
                             <div>
                                 <h1>No results found.</h1>
                             </div>)
-                        : this.state.books.map((book) => (
-                            <div className="bookshelf-books" key={book.id? book.id:null}>
-                                <ol className="books-grid">
-                                    <li>
-                                        <Book title={book.title? book.title : ''} authors={book.authors? book.authors : []} image={book.imageLinks? book.imageLinks.smallThumbnail : ''} />
-                                    </li>
-                                </ol>
+                        : this.state.userinput === ''
+                            ? (
                                 <div>
+                                    <h1>Please type in your search.</h1>
+                                </div>)
+                            : this.state.books.map((book) => (
+                                <div className="bookshelf-books" key={book.id ? book.id : null}>
+                                    <ol className="books-grid">
+                                        <li>
+                                            <Book title={book.title ? book.title : ''} authors={book.authors ? book.authors : []} image={book.imageLinks ? book.imageLinks.smallThumbnail : ''} />
+                                        </li>
+                                    </ol>
+                                    <div>
                                         <h3>{shelfName(book.shelf)}</h3>
                                         <h6>Add Book To:</h6>
                                         <select value={book.shelf} onChange={(event) => this.APIupdate(book, event.target.value)}>
@@ -88,9 +94,9 @@ class BookShelf extends Component {
                                             <option value="read">Read</option>
                                         </select>
                                     </div>
-                            </div>
-                        )
-                        )
+                                </div>
+                            )
+                            )
                     }</div>
             </div>
 
